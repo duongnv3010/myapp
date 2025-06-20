@@ -1,0 +1,34 @@
+# values.yaml
+
+namespace: student-app-helm
+
+frontend:
+  enabled: true
+  image:
+    repository: duong3010/fe-image
+    tag: "v1.0"
+  replicaCount: 1
+  containerPort: 80
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30010
+
+backend:
+  enabled: true
+  image:
+    repository: duong3010/be-image
+    tag: "v1.0"
+  replicaCount: 1
+  containerPort: 3000
+  service:
+    type: NodePort
+    port: 3000
+    nodePort: 30011
+  env:
+    DB_HOST: "192.168.93.137"
+    DB_PORT: "30006"
+    DB_USER: "root"
+    DB_PASSWORD: "password"
+    DB_NAME: "db"
+    JWT_SECRET: "secretkey"
