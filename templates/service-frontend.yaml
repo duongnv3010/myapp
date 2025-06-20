@@ -1,0 +1,16 @@
+{{- if .Values.frontend.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.frontend.service.type }}
+  selector:
+    app: student-frontend
+  ports:
+  - port: {{ .Values.frontend.service.port }}
+    targetPort: {{ .Values.frontend.containerPort }}
+    nodePort: {{ .Values.frontend.service.nodePort }}
+    protocol: TCP
+{{- end }}

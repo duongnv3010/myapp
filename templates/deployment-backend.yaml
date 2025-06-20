@@ -1,0 +1,29 @@
+{{- if .Values.backend.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: student-backend
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: student-backend
+  template:
+    metadata:
+      labels:
+        app: student-backend
+    spec:
+      containers:
+      - name: backend
+        image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.backend.containerPort }}
+        env:
+{{- range $key, $val := .Values.backend.env }}
+        - name: {{ $key }}
+          value: "{{ $val }}"
+{{- end }}
+{{- end }}

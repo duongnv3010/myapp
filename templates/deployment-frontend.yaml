@@ -1,0 +1,25 @@
+{{- if .Values.frontend.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: student-frontend
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app: student-frontend
+  template:
+    metadata:
+      labels:
+        app: student-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.frontend.containerPort }}
+{{- end }}
