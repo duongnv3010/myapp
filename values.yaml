@@ -5,7 +5,7 @@ frontend:
   enabled: true
   image:
     repository: duong3010/fe-image
-    tag: "v1.3-3-g3b58b9e"
+    tag: "v1.4"
   replicaCount: 1
   containerPort: 80
   service:
@@ -16,7 +16,7 @@ backend:
   enabled: true
   image:
     repository: duong3010/be-image
-    tag: "v1.3-3-g3b58b9e"
+    tag: "v1.4"
   replicaCount: 1
   containerPort: 3000
   service:
