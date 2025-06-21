@@ -1,24 +1,22 @@
 # values.yaml
 
 namespace: student-app-helm
-
 frontend:
   enabled: true
   image:
     repository: duong3010/fe-image
-    tag: "v1.0"
+    tag: "v1.3-3-g3b58b9e"
   replicaCount: 1
   containerPort: 80
   service:
     type: NodePort
     port: 80
     nodePort: 30010
-
 backend:
   enabled: true
   image:
     repository: duong3010/be-image
-    tag: "v1.0"
+    tag: "v1.3-3-g3b58b9e"
   replicaCount: 1
   containerPort: 3000
   service:
