@@ -24,9 +24,9 @@ backend:
     port: 3000
     nodePort: 30011
   env:
-    DB_HOST: "192.168.93.137"
+    DB_HOST: "192.168.93.145"
     DB_PORT: "30006"
     DB_USER: "root"
-    DB_PASSWORD: "password"
+    DB_PASSWORD: "root"
     DB_NAME: "db"
     JWT_SECRET: "secretkey"

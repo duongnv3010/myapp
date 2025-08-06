@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: student-app-helm
+  namespace: argocd            # namespace nơi ArgoCD đã được cài đặt
+spec:
+  project: default
+
+  source:
+    # Repo chứa Helm Chart
+    repoURL: 'https://github.com/duongnv3010/myapp.git'
+    path: '.'
+    targetRevision: master      # hoặc HEAD, hoặc tag/branch bạn muốn
+    helm:
+      # Lấy giá trị config từ repo config
+      valueFiles:
+        - 'https://raw.githubusercontent.com/duongnv3010/myapp/refs/heads/master/values.yaml'
+
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: student-app-helm     # namespace sẽ deploy Chart vào
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true   # Tạo namespace nếu chưa tồn tại
