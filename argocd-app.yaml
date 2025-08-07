@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: student-app-helm
+  name: student-app
   namespace: argocd            # namespace nơi ArgoCD đã được cài đặt
 spec:
   project: default
@@ -18,7 +18,7 @@ spec:
 
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: student-app-helm     # namespace sẽ deploy Chart vào
+    namespace: student-app     # namespace sẽ deploy Chart vào
 
   syncPolicy:
     automated:
